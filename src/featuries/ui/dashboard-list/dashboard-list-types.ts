@@ -1,4 +1,4 @@
-import { IDashboard } from '../../shared/types/types';
+import { IDashboard } from '../../../shared/types/types';
 
 export interface ICreateDashboardData {
   resultCode: number

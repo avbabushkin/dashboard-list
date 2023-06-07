@@ -1,7 +1,9 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {createDashboardTC, getDashboardListTC, deleteDashBoardTC} from './dashboard-list-thunk';
-import {useAppDispatch, useAppSelector} from '../../shared/hooks/hooks';
-import {getDashboardSelector} from './dashboard-list-selectors';
+import {createDashboardTC, getDashboardListTC, deleteDashBoardTC, updateDashBoardTC} from '../../model/dashboard/dashboard-thunk';
+import {useAppDispatch, useAppSelector} from '../../../shared/hooks/hooks';
+import {getDashboardSelector} from '../../model/dashboard/dashboard-selectors';
+import { Dashboard } from '../../index';
+import styles from './styles.module.scss'
 
 export const DashboardListComponent = () => {
   const dispatch = useAppDispatch()
@@ -24,21 +26,10 @@ export const DashboardListComponent = () => {
     setTitle('')
   }
 
-  const handleDeleteDashboard = (id: string) => {
-    dispatch(deleteDashBoardTC(id))
-  };
-
+  
   const dashBoardListUi = dashBoardList.map((dashboard) => {
     return (
-      <React.Fragment key={dashboard.id}>
-        <h4>
-          {dashboard.title}
-        </h4>
-        <div>
-          {dashboard.addedDate}
-        </div>
-        <button onClick={() => handleDeleteDashboard(dashboard.id)}>Delete</button>
-      </React.Fragment>
+      <Dashboard key={dashboard.id} id={dashboard.id} title={dashboard.title} addedDate={dashboard.addedDate}/>
     )
   });
 
@@ -50,7 +41,9 @@ export const DashboardListComponent = () => {
         <button onClick={handleCreateDashboard}>Add</button>
       </div>
       <div>
-        {dashBoardListUi}
+        <div className={styles.dashboard}>
+          {dashBoardListUi}
+        </div>
       </div>
     </div>
   )

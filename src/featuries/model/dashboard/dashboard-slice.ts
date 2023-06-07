@@ -1,10 +1,15 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { IInitState } from '../../shared/types/types';
-import { IDashboard } from '../../shared/types/types';
+import { IInitState, IDashboard, ITask } from '../../../shared/types/types';
 
 export const initialState: IInitState = {
-  dashboardList: []
+  dashboardList: [],
+  tasks: {}
 };
+
+export interface ISetTasksToDashboardData {
+  dashboardId: string
+  taskList: ITask[]
+}
 
 export const DashboardSlice = createSlice({
     name: 'DashboardSlice',
@@ -12,12 +17,16 @@ export const DashboardSlice = createSlice({
     reducers: {
       setDashboardList: (state, action: PayloadAction<IDashboard[]>) => {
         state.dashboardList = action.payload
+      },
+      setTasksToDashboard: (state, action: PayloadAction<ISetTasksToDashboardData>) => {
+        state.tasks[action.payload.dashboardId] = action.payload.taskList
       }
     }
 });
 
 export const {
-  setDashboardList
+  setDashboardList,
+  setTasksToDashboard
 } = DashboardSlice.actions;
 
 export const DashboardSliceReducer = DashboardSlice.reducer;
