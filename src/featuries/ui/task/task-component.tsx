@@ -33,7 +33,6 @@ export const TaskComponent: FC<ITaskProps> = ({
 
   return (
     <div className={styles.task}>
-      <div>{statusNum}</div>
       <div className={styles.check}>
         <input type="checkbox" onChange={handleUpdateStatus} checked={statusNum === 1}/>
       </div>
