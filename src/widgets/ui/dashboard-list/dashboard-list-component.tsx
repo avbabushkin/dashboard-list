@@ -10,7 +10,6 @@ import { CreateButton } from '../../../shared';
 import styles from './dashboard-list.module.scss'
 
 export const DashboardListComponent = () => {
-  console.log('DashboardListComponent')
   const dispatch = useAppDispatch()
 
   const dashBoardList = useAppSelector(getDashboardSelector)

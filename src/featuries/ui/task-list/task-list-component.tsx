@@ -8,7 +8,6 @@ import { Task } from '../../index'
 import { CreateButton } from '../../../shared';
 
 export const TaskListComponent: FC<ITaskListProps> = ({id}) => {
-  console.log('TaskListComponent')
   const dispatch = useAppDispatch()
   const allTaskList = useAppSelector(getTaskList)
   const taskList = allTaskList[id] ?? [];
