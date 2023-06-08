@@ -1,12 +1,12 @@
-import React, {FC, useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../shared/hooks/hooks';
+import React, {FC} from 'react';
+import {useAppDispatch} from '../../../shared/hooks/hooks';
 import {format} from 'date-fns'
 
 import {EditableSpan} from '../../../shared';
-import {TaskList} from '../../index';
 import {IDashboardProps} from  './dashboard-types';
-import {getTaskList} from '../../model/dashboard/dashboard-selectors';
-import {deleteDashBoardTC, updateDashBoardTC, getDashboardTasksTC} from '../../model/dashboard/dashboard-thunk'
+import {deleteDashBoardTC, updateDashBoardTC} from '../../model/dashboard/dashboard-thunk'
+import {TaskList} from '../../index';
+import { BsFillTrashFill } from "react-icons/bs";
 import styles from './styles.module.scss'
 
 export const DashboardComponent: FC<IDashboardProps> = ({
@@ -15,22 +15,12 @@ export const DashboardComponent: FC<IDashboardProps> = ({
   addedDate
 }) => {
   const dispatch = useAppDispatch()
-  const allTaskList = useAppSelector(getTaskList)
-  const taskList = allTaskList[id] ?? [];
   const date = format(new Date(addedDate), 'yy.MM.dd')
-
-  useEffect(() => {
-    dispatch(getDashboardTasksTC(id))
-  }, [])
   
   const handleDeleteDashboard = () => {
     dispatch(deleteDashBoardTC(id))
   };
 
-  // const handleGetDashboardTasks = () => {
-  //   dispatch(getDashboardTasksTC(id, 1, 10))
-  // };
-  
   const OnUpdateValue = (value: string) => {
     dispatch(updateDashBoardTC(id, value))
   }
@@ -41,12 +31,15 @@ export const DashboardComponent: FC<IDashboardProps> = ({
         <EditableSpan onUpdateValue={OnUpdateValue}>{title}</EditableSpan> 
       </h4>
       <div>
-        <TaskList dashboardId={id}/>
-        {/* <button onClick={handleGetDashboardTasks}>get tasks</button> */}
-        {/* <button onClick={}></button> */}
+        <h4>Tasks</h4>
+        <TaskList id={id}/>
       </div>
-      <div>Dashboard created: {date}</div>
-      <button onClick={handleDeleteDashboard}>Delete dashboard</button>
+      <div className={styles.del}>
+        <div>Dashboard created: {date}</div>
+        <button title="delete dashboard" onClick={handleDeleteDashboard}>
+          <BsFillTrashFill/>
+        </button>
+      </div>
     </div>
   )
 };

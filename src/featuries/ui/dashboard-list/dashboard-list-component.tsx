@@ -1,15 +1,15 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
-import {createDashboardTC, getDashboardListTC, deleteDashBoardTC, updateDashBoardTC} from '../../model/dashboard/dashboard-thunk';
-import {useAppDispatch, useAppSelector} from '../../../shared/hooks/hooks';
-import {getDashboardSelector} from '../../model/dashboard/dashboard-selectors';
+import React, { useEffect, useState }             from 'react';
+import { createDashboardTC, getDashboardListTC }  from '../../model/dashboard/dashboard-thunk';
+import { useAppDispatch, useAppSelector }         from '../../../shared/hooks/hooks';
+import { getDashboardSelector }                   from '../../model/dashboard/dashboard-selectors';
 import { Dashboard } from '../../index';
 import styles from './styles.module.scss'
+import { CreateButton } from '../../../shared';
 
 export const DashboardListComponent = () => {
   const dispatch = useAppDispatch()
 
   const dashBoardList = useAppSelector(getDashboardSelector)
-  console.log(dashBoardList)
 
   const [title, setTitle] = useState('')
 
@@ -17,15 +17,14 @@ export const DashboardListComponent = () => {
     dispatch(getDashboardListTC())
   }, [])
 
-  const handleChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.currentTarget.value)
-  }
+  // const handleChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setTitle(event.currentTarget.value)
+  // }
 
   const handleCreateDashboard = () => {
     dispatch(createDashboardTC(title))
     setTitle('')
   }
-
   
   const dashBoardListUi = dashBoardList.map((dashboard) => {
     return (
@@ -35,16 +34,8 @@ export const DashboardListComponent = () => {
 
   return (
     <div>
-      DashboardListComponent
-      <div>
-        <input type="text" value={title} onChange={handleChangeTitle}/>
-        <button onClick={handleCreateDashboard}>Add</button>
-      </div>
-      <div>
-        <div className={styles.dashboard}>
-          {dashBoardListUi}
-        </div>
-      </div>
+      <CreateButton onEntityCreate={handleCreateDashboard}/>
+      <div className={styles.dashboard}>{dashBoardListUi}</div>
     </div>
   )
 }

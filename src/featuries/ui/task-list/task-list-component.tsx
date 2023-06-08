@@ -1,39 +1,42 @@
 import React, {FC, useEffect} from 'react'
-import {useAppDispatch, useAppSelector} from '../../../shared/hooks/hooks';
+import { ITaskListProps } from './task-list-types';
+import { useAppDispatch, useAppSelector } from '../../../shared/hooks/hooks';
+import { getTaskList } from '../../model/dashboard/dashboard-selectors';
+import {getDashboardTasksTC, createTasksTC} from '../../model/dashboard/dashboard-thunk';
+import { sortByOreder } from '../../../shared/lib/sort-by-order';
+import {Task} from '../../index'
+import { CreateButton } from '../../../shared';
 
-import {ITaskListProps} from '../../../shared/types/types';
-import {getTaskList} from '../../model/dashboard/dashboard-selectors'
-import {Task} from "../../index";
-import {getDashboardTasksTC} from '../../model/dashboard/dashboard-thunk'
-
-import styles from './styles.module.scss'
-
-export const TaskListComponent: FC<ITaskListProps> = (
-  dashboardId
-) => {
+export const TaskListComponent: FC<ITaskListProps> = ({id}) => {
+  
   const dispatch = useAppDispatch()
   const allTaskList = useAppSelector(getTaskList)
-  const taskList = allTaskList[dashboardId] ?? [];
 
   useEffect(() => {
-    dispatch(getDashboardTasksTC(dashboardId))
-  }, [])
-
-  const taskListUi = taskList.map((task) => {
-    return (
-      <Task key={task.id} id={task.id} title={task.title} completed={task.completed} />
-    )
-  })
-
-  const handleCreateTask = () => {
-    dispatch(crateTaskTC(dashboardId))
+    dispatch(getDashboardTasksTC(id))
+  }, [dispatch, id])
+ 
+  const handleCreateTask = (value: string) => {
+    dispatch(createTasksTC(id, value))
   };
+  
+  // const handleChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setValue(event.currentTarget.value)
+  // }
 
+  // const OnUpdateValue = (value: string) => {
+  //   dispatch(updateTaskTC(id, value))
+  // }
+
+  const taskList = allTaskList[id] ?? [];
+  const taskListUi = [...taskList]
+    .sort(sortByOreder)
+    .map((task) => <Task key={task.id} dashboardId={id} id={task.id} title={task.title} status={task.status}/>)  
+  
   return (
-    <div className={styles.task}>
-      <p>Task list</p>
+    <div>
+      <div><CreateButton onEntityCreate={handleCreateTask} /></div>
       {taskListUi}
-      <button onClick={handleCreateTask}>Create task</button>
     </div>
   )
 };

@@ -1,0 +1,33 @@
+.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+  margin: 20px 0;
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 4px;
+
+  .title {
+    width: 80%;
+  }
+  
+  // скидыывем стили чтобы отобразить чекбокс так как такелаж делет чекбокс размером 0x0
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    -moz-appearance: checkbox !important;
+    -ms-appearance: checkbox !important;
+    -o-appearance: checkbox !important;
+    appearance: checkbox !important;
+  }
+
+  // input {
+    //   width: 100%;
+    // }
+}
+  
+.check {
+  // width: 50px;
+  // height: 50px;
+  // border: 1px solid gray;
+}
