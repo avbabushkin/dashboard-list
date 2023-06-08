@@ -20,13 +20,17 @@ export const DashboardSlice = createSlice({
       },
       setTasksToDashboard: (state, action: PayloadAction<ISetTasksToDashboardData>) => {
         state.tasks[action.payload.dashboardId] = action.payload.taskList
+      },
+      removeTasksDashboard: (state, action: PayloadAction<string>) => {
+        delete state.tasks[action.payload]
       }
     }
 });
 
 export const {
   setDashboardList,
-  setTasksToDashboard
+  setTasksToDashboard,
+  removeTasksDashboard
 } = DashboardSlice.actions;
 
 export const DashboardSliceReducer = DashboardSlice.reducer;

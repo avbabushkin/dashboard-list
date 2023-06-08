@@ -5,6 +5,12 @@ export interface IDashboard {
   order: number;
 }
 
+export interface IResponseData<T = {}> {
+  resultCode: number
+  messages: string[]
+  data: T
+}
+
 export interface ISetTasksToDashboardData {
   dashboardId: string
   taskList: ITask[]
@@ -40,9 +46,7 @@ export interface ITask {
 } 
 
 export interface ICreateTask {
-  resultCode: number
-  messages: string[]
-  data: ITask
+  item: ITask
 }
 
 export interface IDeleteTask {
