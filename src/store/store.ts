@@ -1,5 +1,5 @@
 import {combineReducers, configureStore, Action, ThunkAction} from "@reduxjs/toolkit";
-import { DashboardSliceReducer } from "../featuries/dashboard-list/dashboard-list-slice";
+import { DashboardSliceReducer } from "../featuries/model/dashboard/dashboard-slice";
 
 const rootReducer = combineReducers({
   dashboard: DashboardSliceReducer

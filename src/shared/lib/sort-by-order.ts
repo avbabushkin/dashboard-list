@@ -1,0 +1,1 @@
+export const sortByOreder = (a: any, b: any) => b.order - a.order
