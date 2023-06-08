@@ -13,6 +13,7 @@ export const getDashboardListTC = (): AppThunk => async (dispatch) => {
 
 export const createDashboardTC = (title: string): AppThunk => async (dispatch) => {
   try {
+    console.log('title from thunk', title)
     const res = await dashboardListApi.createDashboard(title)
     res.data.resultCode === 0 
     ? dispatch(getDashboardListTC()) 

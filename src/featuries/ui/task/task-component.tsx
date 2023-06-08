@@ -14,6 +14,7 @@ export const TaskComponent: FC<ITaskProps> = memo(({
   title, 
   status
 }) => {
+  console.log('TaskComponent')
   const dispatch = useAppDispatch()
 
   const handleDeleteTask = () => {

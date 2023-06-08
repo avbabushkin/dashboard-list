@@ -14,6 +14,7 @@ export const DashboardComponent: FC<IDashboardProps> = memo(({
   title, 
   addedDate
 }) => {
+  console.log("DashboardComponent")
   const dispatch = useAppDispatch()
   const date = formatRelative(subDays(new Date(addedDate), 0), new Date(), {
     locale: enGB
