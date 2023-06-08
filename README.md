@@ -5,6 +5,7 @@
 ### Run
 `yarn start`
 
+### Checklist
 - [x] create dashboard
 - [x] delete dachboard
 - [x] update dashboard title by onDoubleClick
