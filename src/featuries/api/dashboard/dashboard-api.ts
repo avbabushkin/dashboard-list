@@ -1,11 +1,12 @@
-import {axiosInstance} from "../../../shared/api/axios";
-import {IDashboard, IGetTasksData, IResponseData} from "../../../shared/types/types";
-import {ICreateTaskData, ICreateDashboardData} from './dashboard-types'
-import {IDeleteDashboardData} from "../../ui/dashboard-list/dashboard-list-types";
+import { axiosInstance } from "../../../shared/api/axios";
+import { IResponseData } from "../../../shared/types/types";
+import { IDashboard } from "../../../entities/types/types";
+import { IGetTasksData, ICreateTaskData, ICreateDashboardData } from './dashboard-types'
+import { IDeleteDashboardData } from "../../../widgets/ui/dashboard-list/dashboard-list-types";
 
 export const dashboardListApi = {
   /**
-   * Get all todolists
+   * Get all dashboards
    */
   getDashboardList: () => axiosInstance.get<IDashboard[]>('/todo-lists'),
   

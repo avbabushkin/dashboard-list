@@ -13,13 +13,11 @@ export const getDashboardListTC = (): AppThunk => async (dispatch) => {
 
 export const createDashboardTC = (title: string): AppThunk => async (dispatch) => {
   try {
+    console.log('title from thunk', title)
     const res = await dashboardListApi.createDashboard(title)
-    if (res.data.resultCode === 0) {
-
-      dispatch(getDashboardListTC())
-    } else {
-      alert(res.data.messages[0])
-    }
+    res.data.resultCode === 0 
+    ? dispatch(getDashboardListTC()) 
+    : alert(res.data.messages[0])
   } catch (error) {
     alert(error)
   }
@@ -29,7 +27,6 @@ export const deleteDashBoardTC = (id: string): AppThunk =>async (dispatch) => {
   try {
     const res = await dashboardListApi.deleteDashboard(id)
     if (res.data.resultCode === 0) {
-
       dispatch(getDashboardListTC())
     } else {
       alert(res.data.messages[0])
@@ -44,7 +41,6 @@ export const updateDashBoardTC = (id: string, title: string): AppThunk =>async (
   try {
     const res = await dashboardListApi.updateDashboard(id, title)
     if (res.data.resultCode === 0) {
-
       dispatch(getDashboardListTC())
     } else {
       alert(res.data.messages[0])

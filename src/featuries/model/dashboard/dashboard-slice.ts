@@ -1,15 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { IInitState, IDashboard, ITask } from '../../../shared/types/types';
+import {ISetTasksToDashboardData, IInitState} from './dashboard-types'
+import { IDashboard } from 'src/entities/types/types';
 
 export const initialState: IInitState = {
   dashboardList: [],
   tasks: {}
 };
-
-export interface ISetTasksToDashboardData {
-  dashboardId: string
-  taskList: ITask[]
-}
 
 export const DashboardSlice = createSlice({
     name: 'DashboardSlice',
