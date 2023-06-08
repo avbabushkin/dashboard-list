@@ -13,5 +13,5 @@
 - [x] delete task
 - [x] update task title by onDoubleClick
 - [x] update task status by checkbox 
-- [ ] set delete button icon from shturval (not work, but take delete icon fron anotger lib)
-- [x] styles 
+- [x] use takelage components
+- [x] use styles  
