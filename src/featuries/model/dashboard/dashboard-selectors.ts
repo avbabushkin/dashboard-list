@@ -11,3 +11,13 @@ export const getTaskList = createSelector(
   getDasboardState,
   (dashboard) => dashboard.tasks
 ) 
+
+export const getTaskListExtended = (state: RootState, id: string) => {
+  const taskList = state.dashboard.tasks[id]
+
+  if (!taskList) {
+    return []
+  }
+
+  return [...taskList]
+}
