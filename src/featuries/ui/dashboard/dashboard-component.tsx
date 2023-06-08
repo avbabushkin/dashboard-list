@@ -1,21 +1,23 @@
-import React, {FC} from 'react';
-import {useAppDispatch} from '../../../shared/hooks/hooks';
-import {format} from 'date-fns'
+import React, {FC, memo} from 'react';
+import { useAppDispatch } from '../../../shared/hooks/hooks';
+import { formatRelative, subDays } from 'date-fns'
+import { enGB } from 'date-fns/locale';
 
-import {EditableSpan} from '../../../shared';
-import {IDashboardProps} from  './dashboard-types';
-import {deleteDashBoardTC, updateDashBoardTC} from '../../model/dashboard/dashboard-thunk'
-import {TaskList} from '../../index';
-import { BsFillTrashFill } from "react-icons/bs";
-import styles from './styles.module.scss'
+import { EditableSpan } from '../../../shared';
+import { IDashboardProps } from  './dashboard-types';
+import { deleteDashBoardTC, updateDashBoardTC } from '../../model/dashboard/dashboard-thunk'
+import { TaskList } from '../../index';
+import { IconButton, Title, Space } from '@shturval/takelage-ui';
 
-export const DashboardComponent: FC<IDashboardProps> = ({
+export const DashboardComponent: FC<IDashboardProps> = memo(({
   id, 
   title, 
   addedDate
 }) => {
   const dispatch = useAppDispatch()
-  const date = format(new Date(addedDate), 'yy.MM.dd')
+  const date = formatRelative(subDays(new Date(addedDate), 0), new Date(), {
+    locale: enGB
+  })
   
   const handleDeleteDashboard = () => {
     dispatch(deleteDashBoardTC(id))
@@ -26,20 +28,17 @@ export const DashboardComponent: FC<IDashboardProps> = ({
   }
 
   return (
-    <div className={styles.dashboard}>
-      <h4>
-        <EditableSpan onUpdateValue={OnUpdateValue}>{title}</EditableSpan> 
-      </h4>
+    <div>
+      <Title>
+        <Space>
+          <IconButton title="delete dashboard" onClick={handleDeleteDashboard} iconName={'delete'}/>
+          <EditableSpan onUpdateValue={OnUpdateValue}>{title}</EditableSpan> 
+        </Space>
+      </Title>
       <div>
-        <h4>Tasks</h4>
         <TaskList id={id}/>
       </div>
-      <div className={styles.del}>
-        <div>Dashboard created: {date}</div>
-        <button title="delete dashboard" onClick={handleDeleteDashboard}>
-          <BsFillTrashFill/>
-        </button>
-      </div>
+      <div>Dashboard created: {date}</div>
     </div>
   )
-};
+});

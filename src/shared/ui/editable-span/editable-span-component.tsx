@@ -4,7 +4,6 @@ import {TextField, Title} from '@shturval/takelage-ui';
 
 
 export const EditableSpanComponent: FC<IEditableSpanProps> = ({children, onUpdateValue}) => {
-  // console.log('EditableSpanComponent')
 
   const [editMode, setEditMode] = useState(false)
   const [value, setValue] = useState(children)

@@ -1,11 +1,11 @@
 import React from 'react'
-import { DashboardList } from '../../featuries/index'
-import styles from './styles.module.scss'
+import { DashboardList } from '../../widgets/ui'
+import { Title } from "@shturval/takelage-ui"
 
 export const MainPageComponent = () => {
   return (
-    <div className={styles.container}>
-      {/* <h2>Main Page</h2> */}
+    <div>
+      <Title>Main Page</Title>
       <DashboardList/>
     </div>
   )
