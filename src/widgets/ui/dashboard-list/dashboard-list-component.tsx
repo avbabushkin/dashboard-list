@@ -23,7 +23,7 @@ export const DashboardListComponent = () => {
   }, []);
   
   return (
-    <Panel>
+    <div>
       <Space direction={'vertical'}>
         <Panel className={styles.topPanel}>
           <CreateButton placeholder={'Dashboard title'} onEntityCreate={handleCreateDashboard}/>
@@ -42,6 +42,6 @@ export const DashboardListComponent = () => {
           }
         </Row>
       </Space>
-    </Panel>
+    </div>
   )
 }
