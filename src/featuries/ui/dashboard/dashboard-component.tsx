@@ -7,7 +7,7 @@ import { EditableSpan } from '../../../shared';
 import { IDashboardProps } from  './dashboard-types';
 import { deleteDashBoardTC, updateDashBoardTC } from '../../model/dashboard/dashboard-thunk'
 import { TaskList } from '../../index';
-import { IconButton, Title, Space } from '@shturval/takelage-ui';
+import { IconButton, Title, Space, Panel } from '@shturval/takelage-ui';
 
 export const DashboardComponent: FC<IDashboardProps> = memo(({
   id, 
@@ -28,9 +28,9 @@ export const DashboardComponent: FC<IDashboardProps> = memo(({
   }
 
   return (
-    <div>
+    <Panel>
       <Title>
-        <Space>
+        <Space size={'large'} align={'center'}>
           <IconButton title="delete dashboard" onClick={handleDeleteDashboard} iconName={'delete'}/>
           <EditableSpan onUpdateValue={OnUpdateValue}>{title}</EditableSpan> 
         </Space>
@@ -39,6 +39,6 @@ export const DashboardComponent: FC<IDashboardProps> = memo(({
         <TaskList id={id}/>
       </div>
       <div>Dashboard created: {date}</div>
-    </div>
+    </Panel>
   )
 });

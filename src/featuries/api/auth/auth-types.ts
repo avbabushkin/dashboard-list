@@ -1,8 +1,7 @@
 export interface ICurrentSessionData {
-  id: number
   email: string
-  login: string
-
+  password: string
+  rememberMe: boolean
 }
 
 export interface ICreateSessionData {

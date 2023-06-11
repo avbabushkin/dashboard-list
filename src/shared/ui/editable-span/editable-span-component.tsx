@@ -1,6 +1,6 @@
 import React, {FC, useState, KeyboardEvent, ChangeEvent} from 'react'
 import {IEditableSpanProps} from "./editable-span-types"
-import {TextField, Title} from '@shturval/takelage-ui';
+import {TextField } from '@shturval/takelage-ui';
 
 
 export const EditableSpanComponent: FC<IEditableSpanProps> = ({children, onUpdateValue}) => {
@@ -35,7 +35,7 @@ export const EditableSpanComponent: FC<IEditableSpanProps> = ({children, onUpdat
       {
         editMode
         ? <TextField value={value} onChange={handleChange} autoFocus onBlur={handleBlur} onKeyDown={handleEnter}/> 
-        : <Title><span  onDoubleClick={handleEditMode}>{value}</span></Title>
+        : <span  onDoubleClick={handleEditMode}>{value}</span>
       }
     </>
   );

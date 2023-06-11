@@ -31,12 +31,11 @@ export const TaskComponent: FC<ITaskProps> = memo(({
 
   return (
     <Title>
-      <Space>
+      <Space size={'middle'} align={'center'}>
         <Checkbox name={id} type="checkbox" onChange={handleUpdateStatus} value={statusNum === 1}/>
         <EditableSpan onUpdateValue={OnUpdateValue}>{title}</EditableSpan>
-        <IconButton title={'Delete button'} onClick={handleDeleteTask} iconName={'delete'} />
+        <IconButton title={'Delete button'} variant={'link'} onClick={handleDeleteTask} iconName={'delete'} />
       </Space>
     </Title>
-
   )
 });

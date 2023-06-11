@@ -13,7 +13,7 @@ export const authApi = {
    * @param email - email for login
    * @param password - passwort for login
    */
-  createSession: (email: string, password: string) => axiosInstance.post<IResponseData<ICreateSessionData>>('/auth/login', {email, password}),
+  createSession: (data: any) => axiosInstance.post<IResponseData<ICreateSessionData>>('/auth/login', data),
 
   /**
    * logout from service
